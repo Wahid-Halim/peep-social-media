@@ -4,7 +4,6 @@ import Modal from "@/components/Modal";
 const page = () => {
   return (
     <>
-      <Modal />
       <Header label="Home" />
     </>
   );
