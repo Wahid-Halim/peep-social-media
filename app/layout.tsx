@@ -33,6 +33,7 @@ export default function RootLayout({
       >
         <LoginModal />
         <RegisterModal />
+
         <div className="h-screen">
           <div className="container h-screen mx-auto xl:px-30 max-w-6xl">
             <div>
