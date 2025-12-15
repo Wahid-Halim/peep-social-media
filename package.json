@@ -11,7 +11,11 @@
   "dependencies": {
     "@prisma/client": "6.19",
     "daisyui": "^5.5.8",
+<<<<<<< HEAD
     "dotenv": "^17.2.3",
+=======
+    "mongodb": "^7.0.0",
+>>>>>>> 1393cf84554de05fbad2a61caa7e7f51a7168a3d
     "next": "^16.0.10",
     "react": "19.2.1",
     "react-dom": "19.2.1",
@@ -25,7 +29,11 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.8",
+<<<<<<< HEAD
     "prisma": "6.19",
+=======
+    "prisma": "^7.1.0",
+>>>>>>> 1393cf84554de05fbad2a61caa7e7f51a7168a3d
     "tailwindcss": "^4.1.17",
     "typescript": "^5"
   }
