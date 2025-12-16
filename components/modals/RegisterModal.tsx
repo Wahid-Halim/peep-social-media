@@ -44,14 +44,14 @@ const RegisterModal = () => {
 
       <Input
         placeholder="Name"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         value={name}
         disabled={isLoading}
       />
 
       <Input
         placeholder="Username"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setUsername(e.target.value)}
         value={username}
         disabled={isLoading}
       />

@@ -41,8 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 hack.js
-<<<<<<< HEAD
 /generated/prisma
-=======
-/app/generated/prisma
->>>>>>> 1393cf84554de05fbad2a61caa7e7f51a7168a3d
+
+
+
