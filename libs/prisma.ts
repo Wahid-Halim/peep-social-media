@@ -1,4 +1,5 @@
 import { PrismaClient } from "@/generated/prisma/client";
+import { globalAgent } from "http";
 
 declare global {
   var prisma: PrismaClient | undefined;
