@@ -5,6 +5,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import FollowBar from "@/components/layout/FollowBar";
 import LoginModal from "@/components/modals/LoginModal";
 import RegisterModal from "@/components/modals/RegisterModal";
+import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,25 +32,27 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LoginModal />
-        <RegisterModal />
+        <Providers>
+          <LoginModal />
+          <RegisterModal />
 
-        <div className="h-screen">
-          <div className="container h-screen mx-auto xl:px-30 max-w-6xl">
-            <div>
-              <div className="grid grid-cols-4 h-screen">
-                <Sidebar />
-                <div
-                  className="col-span-3 lg:col-span-2 border-x
-                border-red-400 "
-                >
-                  {children}
+          <div className="h-screen">
+            <div className="container h-screen mx-auto xl:px-30 max-w-6xl">
+              <div>
+                <div className="grid grid-cols-4 h-screen">
+                  <Sidebar />
+                  <div
+                    className="col-span-3 lg:col-span-2 border-x
+                    border-red-400 "
+                  >
+                    {children}
+                  </div>
+                  <FollowBar />
                 </div>
-                <FollowBar />
               </div>
             </div>
           </div>
-        </div>
+        </Providers>
       </body>
     </html>
   );

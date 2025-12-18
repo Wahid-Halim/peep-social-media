@@ -12,7 +12,7 @@ interface ModalProps {
   body?: React.ReactElement;
   footer?: React.ReactElement;
   actionLabel: string;
-  disabled?: boolean;
+  disabled: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -38,7 +38,7 @@ const Modal: React.FC<ModalProps> = ({
   if (!isOpen) {
     return null;
   }
-  
+
   return (
     <>
       <div
@@ -70,7 +70,6 @@ const Modal: React.FC<ModalProps> = ({
                 secondary
                 fullWidth
                 large
-                onClick={handleSubmit}
               />
               {footer}
             </div>
