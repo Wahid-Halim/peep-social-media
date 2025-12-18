@@ -5,7 +5,7 @@ import { GiConsoleController } from "react-icons/gi";
 
 // queryFn
 const fetchCurrentUser = async () => {
-  const res = await api.get("/user"); // calls /api/user
+  const res = await api.get("/current-user"); // calls /api/user
   return res.data;
 };
 

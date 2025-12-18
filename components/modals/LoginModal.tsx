@@ -5,7 +5,6 @@ import Input from "../Input";
 import Modal from "../Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
-import api from "@/libs/api";
 import toast from "react-hot-toast";
 
 const LoginModal = () => {
