@@ -1,6 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/libs/api";
+import { GiConsoleController } from "react-icons/gi";
 
 // queryFn
 const fetchCurrentUser = async () => {

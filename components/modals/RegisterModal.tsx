@@ -37,14 +37,14 @@ const RegisterModal = () => {
 
       toast.success("Account created");
 
-      await signIn("credentials", {
+      signIn("credentials", {
         email,
         password,
-        redirect: false,
       });
 
       registerModal.onClose();
-    } catch (error: any) {
+    } catch (error: unknown) {
+      console.log(error);
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);

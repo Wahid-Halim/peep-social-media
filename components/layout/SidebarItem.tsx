@@ -1,6 +1,8 @@
-import React from "react";
+"use client";
+
+import { useRouter } from "next/navigation";
+import React, { useCallback } from "react";
 import { IconType } from "react-icons";
-import { BsHouseFill } from "react-icons/bs";
 
 interface SidebarItemProps {
   label: string;
@@ -15,8 +17,18 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   icon: Icon,
   onClick,
 }) => {
+  const router = useRouter();
+
+  const handleClick = useCallback(() => {
+    if (onClick) return onClick();
+
+    if (href) {
+      router.push(href);
+    }
+  }, [router, onClick, href]);
+
   return (
-    <div className="flex flex-row items-center">
+    <div onClick={handleClick} className="flex flex-row items-center">
       <div
         className="relative 
         rounded-full h-14 w-14  flex items-center justify-center p-4 hover:bg-slate-400 hover:bg-opacity-10
