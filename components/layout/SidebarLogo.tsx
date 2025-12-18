@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { BsTwitter } from "react-icons/bs";
+import { TbHexagonLetterP, TbSquareRoundedLetterP } from "react-icons/tb";
 
 const SidebarLogo = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const SidebarLogo = () => {
     transition
     "
     >
-      <BsTwitter size={28} />
+      <TbSquareRoundedLetterP size={28} />
     </div>
   );
 };
