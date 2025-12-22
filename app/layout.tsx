@@ -6,6 +6,7 @@ import FollowBar from "@/components/layout/FollowBar";
 import LoginModal from "@/components/modals/LoginModal";
 import RegisterModal from "@/components/modals/RegisterModal";
 import Providers from "./providers";
+import EditModal from "@/components/modals/EditModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Providers>
           <LoginModal />
           <RegisterModal />
+          <EditModal />
 
           <div className="h-screen">
             <div className="container h-screen mx-auto xl:px-30 max-w-6xl">
