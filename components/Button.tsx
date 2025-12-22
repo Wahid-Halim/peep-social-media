@@ -6,7 +6,7 @@ interface ButtonProps {
   fullWidth?: boolean;
   large?: boolean;
   onClick?: () => void;
-  disabled: boolean;
+  disabled?: boolean;
   outline?: boolean;
 }
 
