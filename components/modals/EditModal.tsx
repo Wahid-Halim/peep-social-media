@@ -7,6 +7,7 @@ import Modal from "../Modal";
 import Input from "../Input";
 import api from "@/libs/api";
 import { useQueryClient } from "@tanstack/react-query";
+import ImageUpload from "../layout/ImageUpload";
 
 const EditModal = () => {
   const { data } = useCurrentUser();
@@ -62,6 +63,18 @@ const EditModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
+      <ImageUpload
+        value={profileImage}
+        disabled={isLoading}
+        onChange={(image) => setProfileImage(image)}
+        label="Upload profile image"
+      />
+      <ImageUpload
+        value={coverImage}
+        disabled={isLoading}
+        onChange={(image) => setCoverImage(image)}
+        label="Upload cover image"
+      />
       <Input
         placeholder="Name"
         value={name}
