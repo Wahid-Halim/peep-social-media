@@ -5,7 +5,6 @@ import prisma from "@/libs/prisma";
 export async function PATCH(request: Request) {
   try {
     const { user } = await serverAuth();
-    console.log(user);
 
     const body = await request.json();
     const { name, username, bio, profileImage, coverImage } = body;

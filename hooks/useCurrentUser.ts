@@ -1,7 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/libs/api";
-import { GiConsoleController } from "react-icons/gi";
 
 // queryFn
 const fetchCurrentUser = async () => {
@@ -14,9 +13,7 @@ const useCurrentUser = () => {
   return useQuery({
     queryKey: ["currentUser"],
     queryFn: fetchCurrentUser,
-
-    staleTime: 1000 * 60 * 5,
-    retry: 1, // retry once on failure
+    retry: 1,
   });
 };
 

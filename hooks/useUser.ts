@@ -1,39 +1,21 @@
 "use client";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import api from "@/libs/api";
 
+// queryFn
 const fetchUser = async (userId: string) => {
   const res = await api.get(`/users/${userId}`);
   return res.data;
 };
 
-const updateUser = async ({ userId, data }: { userId: string; data: any }) => {
-  const res = await api.put(`/edit`, data);
-  return res.data;
-};
-
+// useQuery
 const useUser = (userId?: string) => {
-  const queryClient = useQueryClient();
-
-  // GET
-  const query = useQuery({
+  return useQuery({
     queryKey: ["user", userId],
     queryFn: () => fetchUser(userId!),
     enabled: !!userId,
-    staleTime: 1000 * 60 * 5, // 5 min
-    retry: 1,
+    retry: 1, // retry once on failure
   });
-
-  // MUTATION
-  const mutation = useMutation({
-    mutationFn: (data: any) => updateUser({ userId: userId!, data }),
-    onSuccess: (updatedUser) => {
-      // Update the cache after success
-      queryClient.setQueryData(["user", userId], updatedUser);
-    },
-  });
-
-  return { ...query, mutateUser: mutation };
 };
 
 export { useUser };

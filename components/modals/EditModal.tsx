@@ -1,18 +1,19 @@
 "use client";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import useEditModal from "@/hooks/useEditModal";
-import { useUser } from "@/hooks/useUser";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Modal from "../Modal";
+import Input from "../Input";
+import api from "@/libs/api";
+import { useQueryClient } from "@tanstack/react-query";
 
 const EditModal = () => {
   const { data } = useCurrentUser();
   const currentUser = data?.data;
 
-  const { mutateUser } = useUser(currentUser?.id);
-
   const editModal = useEditModal();
+  const queryClient = useQueryClient();
 
   const [profileImage, setProfileImage] = useState("");
   const [coverImage, setCoverImage] = useState("");
@@ -21,38 +22,64 @@ const EditModal = () => {
   const [bio, setBio] = useState("");
 
   useEffect(() => {
-    setProfileImage(currentUser?.profileImage || "");
-    setCoverImage(currentUser?.coverImage || "");
-    setName(currentUser?.name || "");
-    setUsername(currentUser?.username || "");
-    setBio(currentUser?.bio || "");
-  }, [
-    currentUser?.profileImage,
-    currentUser?.coverImage,
-    currentUser?.name,
-    currentUser?.username,
-    currentUser?.bio,
-  ]);
+    if (!currentUser) return;
+
+    setProfileImage(currentUser.profileImage || "");
+    setCoverImage(currentUser.coverImage || "");
+    setName(currentUser.name || "");
+    setUsername(currentUser.username || "");
+    setBio(currentUser.bio || "");
+  }, [currentUser]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback(async () => {
+    if (!currentUser) return;
+
+    setIsLoading(true);
+
+    const updatedUser = {
+      ...currentUser,
+      name,
+      username,
+      bio,
+      profileImage,
+      coverImage,
+    };
+
     try {
-      setIsLoading(true);
-      mutateUser.mutate({
-        name,
-        username,
-        bio,
-        profileImage,
-        coverImage,
-      });
+      // update backend
+      await api.patch("/edit", updatedUser);
       toast.success("Updated");
       editModal.onClose();
+      window.location.reload();
     } catch (error) {
-      toast.error("Something went wrong ");
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  }, [username, name, bio, profileImage, coverImage, mutateUser, editModal]);
+  }, [name, username, bio, profileImage, coverImage, currentUser, editModal]);
+
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Input
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <Input
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <Input
+        placeholder="Bio"
+        value={bio}
+        onChange={(e) => setBio(e.target.value)}
+      />
+    </div>
+  );
+
   return (
     <Modal
       disabled={isLoading}
@@ -61,6 +88,7 @@ const EditModal = () => {
       actionLabel="Save"
       onClose={editModal.onClose}
       onSubmit={onSubmit}
+      body={bodyContent}
     />
   );
 };
