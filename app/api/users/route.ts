@@ -7,10 +7,18 @@ export async function GET(req: NextRequest) {
       orderBy: {
         createdAt: "desc",
       },
+      take: 10,
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        profileImage: true,
+      },
     });
 
-    return NextResponse.json({ success: true, data: users });
+    return NextResponse.json(users);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to fetch users" },
       { status: 500 }

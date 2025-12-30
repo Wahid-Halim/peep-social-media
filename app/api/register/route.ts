@@ -1,27 +1,49 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import prisma from "@/libs/prisma";
+import { z } from "zod";
+
+const registerSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  password: z.string().min(6, { message: "Password must be at least 6 characters long" }),
+  username: z.string().min(3, { message: "Username must be at least 3 characters long" }).regex(/^[a-zA-Z0-9_]+$/, { message: "Username can only contain letters, numbers, and underscores" }),
+  name: z.string().min(1, { message: "Name is required" }),
+});
 
 export async function POST(request: Request) {
   try {
-    const { email, password, username, name } = await request.json();
+    const body = await request.json();
+    const validation = registerSchema.safeParse(body);
 
-    // Validation
-    if (!name || !password || !username || !email) {
+    if (!validation.success) {
       return NextResponse.json(
-        { success: false, message: "All credentials are required" },
+        { success: false, message: validation.error.errors[0].message },
         { status: 400 }
       );
     }
 
-    // Check if user already exists
-    const existingUser = await prisma.user.findUnique({
+    const { email, password, username, name } = validation.data;
+
+    // Check if email already exists
+    const existingUserByEmail = await prisma.user.findUnique({
       where: { email },
     });
 
-    if (existingUser) {
+    if (existingUserByEmail) {
       return NextResponse.json(
         { success: false, message: "Email already exists" },
+        { status: 409 }
+      );
+    }
+
+    // Check if username already exists
+    const existingUserByUsername = await prisma.user.findUnique({
+      where: { username },
+    });
+
+    if (existingUserByUsername) {
+      return NextResponse.json(
+        { success: false, message: "Username already exists" },
         { status: 409 }
       );
     }

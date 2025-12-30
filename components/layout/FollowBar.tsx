@@ -1,28 +1,10 @@
 "use client";
-import { UseUsers } from "@/hooks/useUsers";
+import { useUsers } from "@/hooks/useUsers";
 import Avatar from "../Avatar";
 
-// interface Users {
-//   id: string;
-//   name: string;
-//   username: string;
-//   bio?: string;
-//   email: string;
-//   emailVerified?: boolean;
-//   image: string;
-//   coverImage: string;
-//   profileImage: string;
-//   hashedPassword: string;
-//   createdAt: Date;
-//   updatedAt: Date;
-//   followingIds: string[];
-//   hasNotification?: boolean;
-// }
-
 const FollowBar = () => {
-  const { data } = UseUsers();
-  const users = data?.data || [];
-  console.log(users);
+  const { data: users = [] } = useUsers();
+
   if (users.length === 0) {
     return null;
   }

@@ -5,6 +5,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import FollowBar from "@/components/layout/FollowBar";
 import LoginModal from "@/components/modals/LoginModal";
 import RegisterModal from "@/components/modals/RegisterModal";
+import TweetModal from "@/components/modals/TweetModal";
 import Providers from "./providers";
 import EditModal from "@/components/modals/EditModal";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
+          <TweetModal />
           <LoginModal />
           <RegisterModal />
           <EditModal />

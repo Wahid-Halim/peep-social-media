@@ -47,6 +47,8 @@ model Post {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   comments Comment[]
+
+  @@index([userId])
 }
 
 model Comment {
@@ -60,6 +62,9 @@ model Comment {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([postId])
 }
 
 model Notification {
@@ -70,4 +75,6 @@ model Notification {
   userId    String   @db.ObjectId
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
