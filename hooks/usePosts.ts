@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "@/libs/api";
 
 const fetchPosts = async (userId?: string) => {
-  const url = userId ? `/posts?userId=${userId}` : "/api/posts";
+  const url = userId ? `/api/posts?userId=${userId}` : "/api/posts";
   const res = await api.get(url);
   return res.data;
 };
