@@ -4,9 +4,20 @@ import prisma from "@/libs/prisma";
 import { z } from "zod";
 
 const registerSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters long" }),
-  username: z.string().min(3, { message: "Username must be at least 3 characters long" }).regex(/^[a-zA-Z0-9_]+$/, { message: "Username can only contain letters, numbers, and underscores" }),
+  email: z
+    .string()
+    .email({ message: "Invalid email address" })
+    .transform((value) => value.toLowerCase()),
+  password: z
+    .string()
+    .min(6, { message: "Password must be at least 6 characters long" }),
+  username: z
+    .string()
+    .min(3, { message: "Username must be at least 3 characters long" })
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message: "Username can only contain letters, numbers, and underscores",
+    })
+    .transform((value) => value.toLowerCase()),
   name: z.string().min(1, { message: "Name is required" }),
 });
 

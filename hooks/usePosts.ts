@@ -1,21 +1,16 @@
-"use client";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/libs/api";
-import { Post } from "@prisma/client";
 
-const fetchPosts = async (userId?: string): Promise<Post[]> => {
-  const url = userId ? `/api/posts?userId=${userId}` : "/api/posts";
+const fetchPosts = async (userId?: string) => {
+  const url = userId ? `/posts?userId=${userId}` : "/api/posts";
   const res = await api.get(url);
   return res.data;
 };
 
-const usePosts = (userId?: string) => {
-  return useQuery<Post[], Error>({
-    queryKey: userId ? ["posts", userId] : ["posts"],
+export const usePosts = (userId?: string) => {
+  return useQuery({
+    queryKey: ["posts", userId], // 🔑 IMPORTANT
     queryFn: () => fetchPosts(userId),
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    retry: 1, // retry once on failure
+    enabled: userId !== undefined || userId === undefined,
   });
 };
-
-export { usePosts };
