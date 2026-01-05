@@ -1,11 +1,9 @@
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 import { formatDistanceToNowStrict } from "date-fns";
-import { loadManifestWithRetries } from "next/dist/server/load-components";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo } from "react";
 import Avatar from "../Avatar";
-import { createDecipheriv } from "crypto";
 import { AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
 
 interface PostItemProps {
@@ -44,8 +42,9 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     if (!data.createdAt) {
       return null;
     }
+
     return formatDistanceToNowStrict(new Date(data.createdAt));
-  }, [data?.createdAt]);
+  }, [data.createdAt]);
 
   return (
     <div
