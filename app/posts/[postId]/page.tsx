@@ -2,6 +2,7 @@
 
 import Form from "@/components/Form";
 import Header from "@/components/Header";
+import CommentFeed from "@/components/posts/CommentFeed";
 import PostItem from "@/components/posts/PostItem";
 import { usePost } from "@/hooks/usePost";
 import { useParams } from "next/navigation";
@@ -13,8 +14,6 @@ const PostView = () => {
 
   const { data, isPending } = usePost(postId);
   const post = data?.data;
-
-
 
   if (isPending) {
     return (
@@ -37,6 +36,7 @@ const PostView = () => {
         isComment
         placeholder="tweet your replay"
       />
+      <CommentFeed comments={post?.comments} />
     </>
   );
 };
