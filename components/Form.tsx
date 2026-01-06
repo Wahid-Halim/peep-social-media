@@ -3,7 +3,6 @@
 import { useCallback, useState } from "react";
 
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { usePosts } from "@/hooks/usePosts";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import Button from "./Button";
@@ -55,8 +54,6 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
               className="textarea"
               placeholder={placeholder}
             ></textarea>
-
-
 
             <hr className="opacity-0 peer-focus:opacity-100 h-px w-full border-neutral-800 transition" />
             <div className="mt-4 flex flex-row justify-end">
