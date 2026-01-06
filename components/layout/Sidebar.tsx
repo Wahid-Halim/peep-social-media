@@ -3,34 +3,36 @@ import { BsHouseFill, BsBellFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
-import { BiLogOut } from "react-icons/bi";
+import { BiCurrentLocation, BiLogOut } from "react-icons/bi";
 import SidebarTweetButton from "./SidebarTweetButton";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { signOut } from "next-auth/react";
 
-const items = [
-  {
-    label: "Home",
-    href: "/",
-    icon: BsHouseFill,
-  },
-  {
-    label: "notification",
-    href: "/notifications",
-    icon: BsBellFill,
-    auth: true,
-  },
-  {
-    label: "profile",
-    href: "/users/123",
-    icon: FaUser,
-    auth: true,
-  },
-];
-
 const Sidebar = () => {
   const { data } = useCurrentUser();
   const currentUser = data?.data;
+  console.log(currentUser, "currentUser");
+
+  const items = [
+    {
+      label: "Home",
+      href: "/",
+      icon: BsHouseFill,
+    },
+    {
+      label: "notification",
+      href: "/notifications",
+      icon: BsBellFill,
+      auth: true,
+      alert: currentUser?.hasNotification,
+    },
+    {
+      label: "profile",
+      href: "/users/123",
+      icon: FaUser,
+      auth: true,
+    },
+  ];
 
   return (
     <div className="col-span-1 h-full pr-4 md:pr-6">
@@ -44,6 +46,7 @@ const Sidebar = () => {
               label={item.label}
               icon={item.icon}
               auth={item.auth}
+              alert={item.alert}
             />
           ))}
           {currentUser && (

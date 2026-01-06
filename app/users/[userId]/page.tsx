@@ -12,7 +12,6 @@ const UserView = () => {
   const { userId }: { userId: string } = useParams();
   const { data, isPending } = useUser(userId);
   const user = data?.data;
-  console.log(user);
 
   if (isPending || !user)
     return (
