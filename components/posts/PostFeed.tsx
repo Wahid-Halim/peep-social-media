@@ -11,7 +11,7 @@ interface PostFeedProps {
 }
 const PostFeed: React.FC<PostFeedProps> = ({ userId }) => {
   const { data, isPending } = usePosts(userId);
-  console.log(data);
+  console.log(data, "post feed data");
 
   if (isPending) return <BiLoader />;
 
