@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { BsTwitter } from "react-icons/bs";
-import { TbHexagonLetterP, TbSquareRoundedLetterP } from "react-icons/tb";
+import { TbSquareRoundedLetterP } from "react-icons/tb";
 
 const SidebarLogo = () => {
   const router = useRouter();
@@ -10,7 +9,7 @@ const SidebarLogo = () => {
       onClick={() => router.push("/")}
       className="rounded-full h-14 
     w-14 p-4 flex items-center justify-center 
-    hover:bg-blue-300
+    hover:bg-secondary/50
     cursor-pointer
     transition
     "

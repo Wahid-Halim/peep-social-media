@@ -29,9 +29,7 @@ const Button: React.FC<ButtonProps> = ({
 
     ${fullWidth ? "w-full" : "w-fit"}
     ${
-      secondary
-        ? "bg-white text-black border-black"
-        : "bg-sky-500 text-white border-sky-500"
+      secondary ? "btn btn-outline" : "bg-secondary text-white border-secondary"
     }
     ${large ? "text-xl py-3 px-5" : "textarea-md  py-2 px-4"}
     ${outline ? "bg-transparent border-white text-white" : ""}

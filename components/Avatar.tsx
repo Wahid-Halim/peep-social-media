@@ -24,21 +24,24 @@ const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
   );
 
   return (
-    <div
-      className={`
-        ${hasBorder ? "border-4 border-black" : ""} 
-        ${isLarge ? "h-32 w-32" : "h-12 w-12"} 
-rounded-full hover:opacity-90 transition cursor-pointer relative
-      `}
-    >
-      <Image
-        fill
-        alt="Avatar"
-        onClick={onClick}
-        className="rounded-full object-cover"
-        src={user?.profileImage || "/images/placeholder.jpg"}
-      />
-    </div> 
+    <div className="avatar">
+      <div
+        className={`
+          ${hasBorder ? "border-2 border-black" : ""}
+         ${isLarge ? "h-32 w-32" : "h-12 w-12"} 
+ rounded-full hover:opacity-90 transition cursor-pointer relative
+ ring-secondary ring-offset-base-100 ring-1 ring-offset-2
+        `}
+      >
+        <Image
+          fill
+          alt="Avatar"
+          onClick={onClick}
+          className="rounded-full object-cover"
+          src={user?.profileImage || "/images/placeholder.jpg"}
+        />
+      </div>
+    </div>
   );
 };
 

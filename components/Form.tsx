@@ -46,10 +46,10 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [body, isComment, postId]);
+  }, [body, isComment, postId, queryClient]);
 
   return (
-    <div className="border-b border-neutral-800 px-5 py-2">
+    <div className="border-b border-base-content/5 px-5 py-2">
       {currentUser ? (
         <div className="flex flex-row gap-4">
           <div>

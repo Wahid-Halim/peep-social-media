@@ -31,7 +31,7 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
   }, [user.createdAt]);
 
   return (
-    <div className="border-b border-neutral-800 pb-4">
+    <div className="border-b border-base-content/5 pb-4">
       <div className="flex justify-end p-2">
         {currentUser?.id === userId ? (
           <Button secondary label="Edit" onClick={() => editModal.onOpen()} />
@@ -46,7 +46,9 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
       </div>
       <div className="mt-8 px-4">
         <div className="flex flex-col">
-          <p className="text-white text-2xl font-semibold">{user?.name}</p>
+          <p className="text-base-content text-2xl font-semibold">
+            {user?.name}
+          </p>
           <p className="text-md text-neutral-500">@{user.username}</p>
         </div>
         <div className="flex flex-col mt-4">
