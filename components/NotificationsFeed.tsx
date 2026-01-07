@@ -1,23 +1,14 @@
 "use client";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useNotifications } from "@/hooks/useNotifications";
-import { useQueryClient } from "@tanstack/react-query";
-import React, { useEffect } from "react";
-import { BsTwitter } from "react-icons/bs";
+import { AiFillNotification } from "react-icons/ai";
 
 const NotificationsFeed = () => {
-  const queryClient = useQueryClient();
   const { data } = useCurrentUser();
   const currentUser = data?.data;
 
   const { data: notifications } = useNotifications(currentUser?.id);
-
-  const notificationsData = notifications?.data || [];
-  useEffect(() => {
-    queryClient.invalidateQueries({
-      queryKey: ["notifications", currentUser?.id],
-    });
-  }, [queryClient, currentUser?.id]);
+  const notificationsData = notifications?.notifications || [];
 
   if (notificationsData.length === 0) {
     return (
@@ -34,9 +25,12 @@ const NotificationsFeed = () => {
           key={notification.id}
           className="flex flex-row items-center p-6 gap-4 border-b border-neutral-800"
         >
-          {notification.message}
-          <BsTwitter color="white" size={32} />
-          <p className="text-white">{notificationsData.body}</p>
+          <AiFillNotification
+            // color="white"
+            size={25}
+            className="text-secondary"
+          />
+          <p className="text-white">{notification.body}</p>
         </div>
       ))}
     </div>

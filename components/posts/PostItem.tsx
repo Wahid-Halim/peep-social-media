@@ -16,10 +16,9 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
+  console.log(currentUser, "postItem");
 
   const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
-
-  console.log(hasLiked);
 
   const goToUser = useCallback(
     (event: any) => {
@@ -58,7 +57,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
   return (
     <div
       className="
-  border-b border-base-content/5 p-5 cursor-pointer hover:bg-neutral-900 transition
+  border-b border-base-content/5 p-5 cursor-pointer hover:bg-neutral transition
   "
       onClick={goToPost}
     >
@@ -82,15 +81,18 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
           </div>
           <div className="text-whit mt-1">{data.body}</div>
           <div className="flex flex-row items-center mt-3 gap-10">
-            <div className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-sky-500">
+            <div className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-secondary">
               <AiOutlineMessage size={20} />
               <p className="">{data.comments?.length || 0}</p>
             </div>
             <div
               onClick={onLike}
-              className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-red-500"
+              className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-error"
             >
-              <LikeIcon size={20} color={hasLiked ? "red" : ""} />
+              <LikeIcon
+                size={20}
+                className={`${hasLiked ? "text-error" : ""}`}
+              />
               <p className="">{data.likedIds?.length || 0}</p>
             </div>
           </div>

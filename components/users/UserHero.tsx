@@ -13,7 +13,7 @@ const UserHero: React.FC<UserHeroProps> = ({ userId }) => {
 
   return (
     <div className="">
-      <div className="bg-neutral-700 h-44 relative">
+      <div className="bg-base-300 h-44 relative">
         {user?.coverImage && (
           <Image
             src={user.coverImage}

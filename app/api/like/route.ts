@@ -27,6 +27,29 @@ export async function POST(request: NextRequest) {
       data: { likedIds: updatedLikedIds },
     });
 
+    try {
+      const post = await prisma.post.findUnique({
+        where: { id: postId },
+      });
+
+      if (post?.userId) {
+        await prisma.notification.create({
+          data: {
+            body: "Someone liked your post",
+            userId: post.userId,
+          },
+        });
+        await prisma.user.update({
+          where: { id: post.userId },
+          data: {
+            hasNotification: true,
+          },
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
     return NextResponse.json(updatedPost);
   } catch (error) {
     console.error(error);

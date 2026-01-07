@@ -28,7 +28,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
   }, [data.createdAt]);
 
   return (
-    <div className="border-b border-neutral-800 p-5 cursor-pointer hover:bg-neutral-900 transition">
+    <div className="border-b border-neutral-800 p-5 cursor-pointer hover:bg-neutral transition">
       <div className="flex flex-row items-start gap-3">
         <Avatar userId={data.user.id} />
         <div className="">
@@ -46,8 +46,8 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
               @{data.user.username}
             </span>
             <span className="text-neutral-50 text-sm">{createdAt}</span>
-                  </div>
-                  <div className="text-white mt-1">{data.body }</div>
+          </div>
+          <div className="text-white mt-1">{data.body}</div>
         </div>
       </div>
     </div>

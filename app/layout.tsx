@@ -47,7 +47,7 @@ export default function RootLayout({
                   <Sidebar />
                   <div
                     className="col-span-3 lg:col-span-2 border-x
-                    border-red-400 "
+                    border-base-content/5 "
                   >
                     {children}
                   </div>

@@ -21,6 +21,29 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    try {
+      const post = await prisma.post.findUnique({
+        where: { id: postId },
+      });
+
+      if (post?.userId) {
+        await prisma.notification.create({
+          data: {
+            body: "Someone replay to your post",
+            userId: post.userId,
+          },
+        });
+        await prisma.user.update({
+          where: { id: post.userId },
+          data: {
+            hasNotification: true,
+          },
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
     return NextResponse.json(comment);
   } catch (error) {
     console.log(error);

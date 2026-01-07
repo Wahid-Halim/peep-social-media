@@ -11,5 +11,6 @@ export const usePosts = (userId?: string) => {
   return useQuery({
     queryKey: ["posts", userId], // 🔑 IMPORTANT
     queryFn: () => fetchPosts(userId),
+    enabled: userId !== undefined || userId === undefined,
   });
 };
