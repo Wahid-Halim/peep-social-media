@@ -20,7 +20,7 @@ export async function PATCH(request: NextRequest) {
 
     if (!validation.success) {
       return NextResponse.json(
-        { success: false, message: validation.error.errors[0].message },
+        { success: false, message: validation.error.issues[0].message },
         { status: 400 }
       );
     }

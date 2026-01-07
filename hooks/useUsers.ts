@@ -1,7 +1,14 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/libs/api";
-import { User } from "@prisma/client";
+
+// Define a client-side User type
+interface User {
+  id: string;
+  name: string;
+  username: string;
+  profileImage?: string;
+}
 
 // queryFn
 const fetchUsers = async (): Promise<User[]> => {
