@@ -1,13 +1,14 @@
+import { La_Belle_Aurore } from "next/font/google";
 import React from "react";
 
 interface ButtonProps {
-  label?: string;
   secondary?: boolean;
   fullWidth?: boolean;
   large?: boolean;
   onClick?: () => void;
   disabled?: boolean;
   outline?: boolean;
+  label: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled,
   outline,
+  label,
 }: ButtonProps) => {
   return (
     <button
@@ -38,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
     ${outline ? "" : ""}
     `}
     >
-      Post
+      {label}
     </button>
   );
 };

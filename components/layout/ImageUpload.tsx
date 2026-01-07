@@ -51,7 +51,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     <div
       {...getRootProps({
         className:
-          "w-full p-4 text-white text-center border-2 border-dotted rounded-md border-base-content/5",
+          "w-full p-4 text-white text-center border-2 border-dotted rounded-md border-secondary",
       })}
     >
       <input {...getInputProps()} />
