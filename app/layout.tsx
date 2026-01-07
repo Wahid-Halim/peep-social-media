@@ -47,7 +47,7 @@ export default function RootLayout({
           <EditModal />
 
           <div className="h-screen">
-            <div className="container h-screen mx-auto xl:px-30 max-w-6xl">
+            <div className="container h-screen mx-auto xl:px-30 max-w-7xl">
               <div>
                 <div className="grid grid-cols-4 h-screen">
                   <Sidebar />
