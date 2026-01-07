@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    return NextResponse.json({ posts ,userId});
+    return NextResponse.json({ posts });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
