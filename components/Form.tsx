@@ -16,9 +16,15 @@ interface FormProps {
   placeholder: string;
   isComment?: boolean;
   postId?: string;
+  onSuccess?: () => void;
 }
 
-const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
+const Form: React.FC<FormProps> = ({
+  placeholder,
+  isComment,
+  postId,
+  onSuccess,
+}) => {
   const queryClient = useQueryClient();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
@@ -36,6 +42,8 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       await axios.post(url, { body });
       toast.success("Tweet created");
 
+      onSuccess?.();
+
       setBody("");
       queryClient.invalidateQueries({ queryKey: ["posts"] });
       if (isComment) {
@@ -46,7 +54,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [body, isComment, postId, queryClient]);
+  }, [body, isComment, postId, queryClient, onSuccess]);
 
   return (
     <div className="border-b border-base-content/5 px-5 py-2">

@@ -11,8 +11,8 @@ interface ModalProps {
   title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
-  actionLabel: string;
-  disabled: boolean;
+  actionLabel?: string;
+  disabled?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -63,14 +63,16 @@ const Modal: React.FC<ModalProps> = ({
             <div className="relative p-10 flex-auto">{body}</div>
             {/* Footer */}
             <div className="flex flex-col gap-2 p-10">
-              <Button
-                disabled={disabled}
-                label={actionLabel}
-                onClick={handleSubmit}
-                secondary
-                fullWidth
-                large
-              />
+              {actionLabel && onSubmit && (
+                <Button
+                  disabled={disabled}
+                  label={actionLabel}
+                  onClick={handleSubmit}
+                  secondary
+                  fullWidth
+                  large
+                />
+              )}
               {footer}
             </div>
           </div>

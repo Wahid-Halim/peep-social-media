@@ -9,7 +9,10 @@ const TweetModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Form placeholder="What's happening?" />
+      <Form
+        placeholder="What's happening?"
+        onSuccess={() => tweetModal.onClose()}
+      />
     </div>
   );
 
