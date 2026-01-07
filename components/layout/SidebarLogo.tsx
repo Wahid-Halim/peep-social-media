@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { TbSquareRoundedLetterP } from "react-icons/tb";
+import { FaFeatherAlt } from "react-icons/fa";
 
 const SidebarLogo = () => {
   const router = useRouter();
@@ -14,7 +14,7 @@ const SidebarLogo = () => {
     transition
     "
     >
-      <TbSquareRoundedLetterP size={28} />
+      <FaFeatherAlt size={28} />
     </div>
   );
 };
