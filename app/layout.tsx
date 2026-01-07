@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
+
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import FollowBar from "@/components/layout/FollowBar";
@@ -8,6 +10,12 @@ import RegisterModal from "@/components/modals/RegisterModal";
 import TweetModal from "@/components/modals/TweetModal";
 import Providers from "./providers";
 import EditModal from "@/components/modals/EditModal";
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"], // required
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"], // optional, include what you need
+  display: "swap", // like in your link
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="night">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${jetBrainsMono.className} antialiased`}>
         <Providers>
           <TweetModal />
           <LoginModal />

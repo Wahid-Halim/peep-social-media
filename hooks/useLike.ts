@@ -12,7 +12,6 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
 
   const { data: currentUser } = useCurrentUser();
   const currentUserData = currentUser?.data;
-  console.log(currentUserData, "ok", currentUserData);
 
   const { data } = usePost(postId);
   const post = data?.data;

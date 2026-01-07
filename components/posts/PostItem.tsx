@@ -16,7 +16,6 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
-  console.log(currentUser, "postItem");
 
   const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
 

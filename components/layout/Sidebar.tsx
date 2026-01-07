@@ -11,7 +11,6 @@ import { signOut } from "next-auth/react";
 const Sidebar = () => {
   const { data } = useCurrentUser();
   const currentUser = data?.data;
-  console.log(currentUser, "currentUser");
 
   const items = [
     {
